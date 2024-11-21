@@ -25,6 +25,7 @@ INSTANCE_ID=$(aws ec2 run-instances \
     --user-data file://$USER_DATA_FILE \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$TAG_NAME}]" \
     --query "Instances[0].InstanceId" \
+    --iam-instance-profile "Name=ec2-instance-profile" \
     --output text)
 
 echo "Instance ID: $INSTANCE_ID"
